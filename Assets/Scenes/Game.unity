@@ -359,9 +359,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3.5
-  _laserPrefab: {fileID: 5833374292316695849, guid: a1046da9917814be0becf57ec0e4cb5b, type: 3}
+  _laserPrefab: {fileID: 0}
   _fireRate: 0.5
-  _lives: 3
+  _lives: 4
+  _spawnManager: {fileID: 0}
 --- !u!1 &999505859
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 2585608740633397138, guid: f12dfbfa9b01f4fc5a40f3581821af98, type: 3}
   _enemyContainer: {fileID: 711530660}
+  _stopSpawning: 0
 --- !u!4 &1474169651
 Transform:
   m_ObjectHideFlags: 0
@@ -493,6 +495,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2074468752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2585608740633397138, guid: f12dfbfa9b01f4fc5a40f3581821af98, type: 3}
+  m_PrefabInstance: {fileID: 6975560820379181008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2074468759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074468752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eca3af7a0bc314890be0c2af87a036f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 4
 --- !u!1001 &6975560820379181008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -548,5 +568,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3267139822871108177, guid: f12dfbfa9b01f4fc5a40f3581821af98, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f12dfbfa9b01f4fc5a40f3581821af98, type: 3}
