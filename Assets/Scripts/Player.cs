@@ -77,10 +77,6 @@ public class Player : MonoBehaviour
     {
             Vector3 offset = new Vector3(0, 1.05f, 0);
             _canFire = Time.time + _fireRate;
-            // if space key press
-            // instantiate 3 laser (triple shot prefab)
-            // if triple shot active is true, fire 3 lasers
-            // else fire 1 laser
 
         if (Input.GetKey(KeyCode.Space) && _isTripleShotActive == true) {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);

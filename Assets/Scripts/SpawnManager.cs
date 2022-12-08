@@ -15,7 +15,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private bool _stopSpawning = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(SpawnEnemyRoutine());
@@ -35,8 +34,6 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerupRoutine()
     {
-        // every 3-7 seconds spawn a powerup
-
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
