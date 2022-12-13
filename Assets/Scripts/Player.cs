@@ -20,6 +20,10 @@ public class Player : MonoBehaviour
     private bool _isTripleShotActive = false;
     [SerializeField]
     private GameObject _tripleShotPrefab;
+    [SerializeField]
+    private bool _isSpeedBoostActive = false;
+    [SerializeField]
+    private GameObject _speedBoostPrefab;
 
     void Start()
     {
@@ -105,10 +109,23 @@ public class Player : MonoBehaviour
         StartCoroutine(TripleShotPowerDownRoutine());
     }
 
+    public void SpeedBoostActive()
+    {
+        _isSpeedBoostActive = true;
+        _speed = _speed * 2f;
+        StartCoroutine(SpeedBoostPowerDownRoutine());
+    }
+
     IEnumerator TripleShotPowerDownRoutine()
     { 
             yield return new WaitForSeconds(5.0f);
             _isTripleShotActive = false;
+    }
+
+    IEnumerator SpeedBoostPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isSpeedBoostActive = false;
     }
     
 }
