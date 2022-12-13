@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
     public void SpeedBoostActive()
     {
         _isSpeedBoostActive = true;
-        _speed = _speed * 2f;
+        _speed = 7f;
         StartCoroutine(SpeedBoostPowerDownRoutine());
     }
 
@@ -126,6 +126,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
+        _speed = 3.5f;
     }
     
 }
