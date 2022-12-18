@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,10 +9,13 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _speed = 4f;
 
+    private Player _player;
+
+
     void Start()
     {
         transform.position = new Vector3(Random.Range(-9f,9f), 11, 0);
-
+        _player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     void Update()
@@ -27,10 +31,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
-
             if (player != null)
             {
                 player.Damage();
@@ -42,6 +46,7 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
+            _player.AddScore(10);
             Destroy(this.gameObject);
         }
     }
