@@ -5,7 +5,7 @@ using UnityEngine;
 public class Asteroid : MonoBehaviour
 {
     [SerializeField]
-    private float _rotationSpeed = 10f;
+    private float _rotationSpeed = .3f;
 
     // Start is called before the first frame update
     void Start()
