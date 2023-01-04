@@ -13,6 +13,8 @@ public class Powerup : MonoBehaviour
     // 2 = shields
     [SerializeField]
     private int _powerupID;
+    [SerializeField]
+    private AudioClip _clip;
 
     void Start()
     {
@@ -37,6 +39,9 @@ public class Powerup : MonoBehaviour
         {
             Player player = other.transform.GetComponent<Player>();
             if (player != null)
+
+                AudioSource.PlayClipAtPoint(_clip, transform.position);
+
             {
                 switch(_powerupID)
                 {
@@ -53,8 +58,9 @@ public class Powerup : MonoBehaviour
                         break;
                 }
             }
-
+            
             Destroy(this.gameObject);
+            
         }
     }
 }
