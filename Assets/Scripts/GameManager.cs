@@ -16,10 +16,17 @@ public class GameManager : MonoBehaviour
 
             SceneManager.LoadScene(1);
         }
+
+        if (Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
+        }
+
     }
 
     public void GameOver()
     {
         _isGameOver = true;
     }
+
 }
