@@ -1342,10 +1342,10 @@ MonoBehaviour:
   active: 1
   enabled:
     overrideState: 1
-    value: 1
+    value: 0
   intensity:
     overrideState: 1
-    value: 11.5
+    value: 4.56
   threshold:
     overrideState: 1
     value: 1

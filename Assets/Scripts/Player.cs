@@ -34,9 +34,16 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField]
     private AudioClip _laserSoundClip;
-
-
+    [SerializeField]
+    private int _shieldLevel;
+    [SerializeField]
+    private Color _shieldColor;
+    [SerializeField]
+    private SpriteRenderer _shieldRenderer;
     private UIManager _uiManager;
+
+    private Color _green = new Color(255, 186, 0);
+    private Color _red = new Color(255, 4, 4);
 
     void Start()
     {
@@ -75,6 +82,8 @@ public class Player : MonoBehaviour
             FireLaser();
         }
 
+        
+
     }
 
     void CalculateMovement()
@@ -104,6 +113,15 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _speed =  7f;
+        }
+        else
+        {
+            _speed = 3.5f;
+        }
     }
 
     void FireLaser()
@@ -124,20 +142,39 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        
 
         if (_isShieldActive == true)
         {
-            _isShieldActive = false;
-            _shield.SetActive(false);
-            return;
-        } 
+            _shieldLevel--;
 
-        _lives --;
+            if (_shieldLevel == 2)
+            {
+                _shieldColor.a = .55f;
+                _shieldRenderer.color = _shieldColor;
+                return;
+            }
+            else if (_shieldLevel == 1)
+            {
+                _shieldColor.a = .25f;
+                _shieldRenderer.color = _shieldColor;
+                return;
+            }
+            else if (_shieldLevel <= 0)
+            {
+                _isShieldActive = false;
+                _shield.SetActive(false);
+                return;
+            }
+        }
+
+        _lives--;
 
         if (_lives == 2)
         {
             _rightEngine.SetActive(true);
-        } else if (_lives == 1)
+        }
+        else if (_lives == 1)
         {
             _leftEngine.SetActive(true);
         }
@@ -168,6 +205,9 @@ public class Player : MonoBehaviour
 
     public void ShieldActive()
     {
+        _shieldLevel = 3;
+        _shieldColor.a = 1f;
+        _shieldRenderer.color = _shieldColor;
         _isShieldActive = true;
         _shield.SetActive(true);
     }
@@ -190,5 +230,6 @@ public class Player : MonoBehaviour
         _isSpeedBoostActive = false;
         _speed /= _speedMultiplier;
     }
-    
+
+
 }

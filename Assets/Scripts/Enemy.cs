@@ -90,5 +90,7 @@ public class Enemy : MonoBehaviour
             Destroy(GetComponent<Collider2D>());
             _audioSource.Play();
         }
+            
+        
     }
 }
