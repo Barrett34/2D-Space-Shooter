@@ -1604,6 +1604,7 @@ MonoBehaviour:
   - {fileID: 3767645348572106588, guid: e16cbb4eb079f4409af00e6ef95759d1, type: 3}
   - {fileID: 4929312620461582364, guid: 485898dba684c42a4b7b43070efdc3cc, type: 3}
   - {fileID: 6447760693753998995, guid: 0428bdd78591e4d88ab8b234552aefc9, type: 3}
+  - {fileID: 4889126290657377351, guid: bb16d78a096b7492daf6802a6ee4e635, type: 3}
   _stopSpawning: 0
 --- !u!4 &1474169651
 Transform:

@@ -240,6 +240,24 @@ public class Player : MonoBehaviour
         _uiManager.UpdateScore(_score);
     }
 
+    public void AddPlayerLife()
+    {
+        if (_lives == 3)
+        {
+            return;
+        } else if (_lives == 2)
+        {
+            _lives += 1;
+            _rightEngine.SetActive(false);
+            _uiManager.UpdateLives(_lives);
+        } else if (_lives == 1)
+        {
+            _lives += 1;
+            _leftEngine.SetActive(false);
+            _uiManager.UpdateLives(_lives);
+        }
+    }
+
     IEnumerator TripleShotPowerDownRoutine()
     { 
             yield return new WaitForSeconds(5.0f);
