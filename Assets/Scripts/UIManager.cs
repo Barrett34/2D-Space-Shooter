@@ -69,6 +69,9 @@ public class UIManager : MonoBehaviour
         if (ammoCount == 0)
         {
             _reloadText.gameObject.SetActive(true);
+        } else
+        {
+            _reloadText.gameObject.SetActive(false);
         }
     }
 
