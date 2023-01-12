@@ -18,6 +18,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _restartText;
     private GameManager _gameManager;
+    [SerializeField]
+    private Text _ammoText;
+    [SerializeField]
+    private Text _reloadText;
 
 
     // Start is called before the first frame update
@@ -27,6 +31,8 @@ public class UIManager : MonoBehaviour
         _scoreText.text = "Score: " + 0;
         _gameOver.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
+        _reloadText.gameObject.SetActive(false);
+
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         if(_gameManager == null)
@@ -54,6 +60,15 @@ public class UIManager : MonoBehaviour
         {
             GameOverSequence();
             
+        }
+    }
+
+    public void UpdateAmmo(int ammoCount)
+    {
+        _ammoText.text = "Ammo: " + ammoCount.ToString();
+        if (ammoCount == 0)
+        {
+            _reloadText.gameObject.SetActive(true);
         }
     }
 

@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float _speed = 3.5f;
-    private float _speedMultiplier = 2;
+    private float _speedMultiplier = 2.5f;
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
@@ -40,6 +40,12 @@ public class Player : MonoBehaviour
     private Color _shieldColor;
     [SerializeField]
     private SpriteRenderer _shieldRenderer;
+    [SerializeField]
+    private int _ammoCount = 15;
+    
+
+
+
     private UIManager _uiManager;
 
     private Color _green = new Color(255, 186, 0);
@@ -70,6 +76,8 @@ public class Player : MonoBehaviour
         {
             _audioSource.clip = _laserSoundClip;
         }
+
+        _uiManager.UpdateAmmo(_ammoCount);
     }
 
     void Update()
@@ -126,17 +134,25 @@ public class Player : MonoBehaviour
 
     void FireLaser()
     {
+        if (_ammoCount > 0)
+        {
+            _ammoCount--;
+            _uiManager.UpdateAmmo(_ammoCount);
+
             Vector3 offset = new Vector3(0, 1.05f, 0);
             _canFire = Time.time + _fireRate;
 
-        if (Input.GetKey(KeyCode.Space) && _isTripleShotActive == true) {
-            Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
-        } else
-        {
-            Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
-        }
+            if (Input.GetKey(KeyCode.Space) && _isTripleShotActive == true)
+            {
+                Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
+            }
 
-        _audioSource.Play();
+            _audioSource.Play();
+        }
         
     }
 
@@ -231,5 +247,6 @@ public class Player : MonoBehaviour
         _speed /= _speedMultiplier;
     }
 
+   
 
 }
