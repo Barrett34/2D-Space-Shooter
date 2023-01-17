@@ -94,11 +94,13 @@ public class Enemy : MonoBehaviour
 
         if (other.tag == "BigShot" )
         {
-            Destroy(other.gameObject);
+            
             _player.AddScore(10);
 
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0f;
+            Destroy(this.gameObject, 2.8f);
+            _audioSource.Play();
         }
             
         

@@ -12,14 +12,13 @@ GameObject:
   - component: {fileID: 3244338969712903048}
   - component: {fileID: -1151094671559137886}
   - component: {fileID: -6673740608737404726}
-  - component: {fileID: -230305824453853430}
   m_Layer: 0
   m_Name: Big_Shot
-  m_TagString: Untagged
+  m_TagString: BigShot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3244338969712903051
 Transform:
   m_ObjectHideFlags: 0
@@ -134,16 +133,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-230305824453853430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3244338969712903050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43df13988357b4ea394568b9d6fb0430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 0

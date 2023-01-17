@@ -263,7 +263,7 @@ public class Player : MonoBehaviour
     {
         _isBigShotActive = true;
         _bigShot.SetActive(true);
-        BigShotPowerDownRoutine();
+        StartCoroutine(BigShotPowerDownRoutine());
     }
 
     IEnumerator TripleShotPowerDownRoutine()
@@ -281,10 +281,10 @@ public class Player : MonoBehaviour
 
     IEnumerator BigShotPowerDownRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(10.0f);
         _isBigShotActive = false;
         _bigShot.SetActive(false);
-        Destroy(_bigShot);
+       
     }
    
 
