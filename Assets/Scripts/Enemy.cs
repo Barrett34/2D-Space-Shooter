@@ -64,10 +64,11 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Player player = other.transform.GetComponent<Player>();
 
         if (other.tag == "Player")
         {
-            Player player = other.transform.GetComponent<Player>();
+           
             if (player != null)
             {
                 player.Damage();
@@ -89,6 +90,15 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject, 2.8f);
             Destroy(GetComponent<Collider2D>());
             _audioSource.Play();
+        }
+
+        if (other.tag == "BigShot" )
+        {
+            Destroy(other.gameObject);
+            _player.AddScore(10);
+
+            _animator.SetTrigger("OnEnemyDeath");
+            _speed = 0f;
         }
             
         

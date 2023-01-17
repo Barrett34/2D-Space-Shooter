@@ -62,6 +62,9 @@ public class Powerup : MonoBehaviour
                     case 4:
                         player.AddPlayerLife();
                         break;
+                    case 5:
+                        player.BigShotActive();
+                        break;
                     default:
                         break;
                 }

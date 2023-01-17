@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _tripleShotPrefab;
     private bool _isSpeedBoostActive = false;
+    private bool _isBigShotActive = false;
     private bool _isShieldActive = false;
     [SerializeField]
     private GameObject _shield;
@@ -42,14 +43,14 @@ public class Player : MonoBehaviour
     private SpriteRenderer _shieldRenderer;
     [SerializeField]
     private int _ammoCount = 15;
+    [SerializeField]
+    private GameObject _bigShot;
+
     
 
 
 
     private UIManager _uiManager;
-
-    private Color _green = new Color(255, 186, 0);
-    private Color _red = new Color(255, 4, 4);
 
     void Start()
     {
@@ -258,6 +259,13 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void BigShotActive()
+    {
+        _isBigShotActive = true;
+        _bigShot.SetActive(true);
+        BigShotPowerDownRoutine();
+    }
+
     IEnumerator TripleShotPowerDownRoutine()
     { 
             yield return new WaitForSeconds(5.0f);
@@ -271,6 +279,13 @@ public class Player : MonoBehaviour
         _speed /= _speedMultiplier;
     }
 
+    IEnumerator BigShotPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isBigShotActive = false;
+        _bigShot.SetActive(false);
+        Destroy(_bigShot);
+    }
    
 
 }
