@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     private Text _ammoText;
     [SerializeField]
     private Text _reloadText;
+    [SerializeField]
+    private Slider _thrusterSlider;
+   
 
 
     // Start is called before the first frame update
@@ -81,6 +84,12 @@ public class UIManager : MonoBehaviour
         _gameManager.GameOver();
         StartCoroutine(GameOverFlickerRoutine());
     }
+
+    public void UpdateThrusterSlider(float boostValue)
+    {
+        _thrusterSlider.value = boostValue;
+    }
+
 
     IEnumerator GameOverFlickerRoutine()
     {

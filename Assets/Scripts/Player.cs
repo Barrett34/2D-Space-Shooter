@@ -45,6 +45,14 @@ public class Player : MonoBehaviour
     private int _ammoCount = 15;
     [SerializeField]
     private GameObject _bigShot;
+    [SerializeField]
+    private GameObject _thruster;
+    [SerializeField]
+    private float _boostValue = 100f;
+    [SerializeField]
+    private float _reboostSpeed;
+    private bool isThrusterActive;
+
 
     
 
@@ -123,13 +131,43 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && _boostValue <= 0)
         {
-            _speed =  7f;
-        }
-        else
-        {
+            StopCoroutine(ActivateBoostRefuel());
+            _thruster.SetActive(false);
             _speed = 3.5f;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) && _boostValue > 0)
+        {
+            if (_isSpeedBoostActive)
+            {
+                StopCoroutine(ActivateBoostRefuel());
+                ActivateThruster();
+                _speed = 10f;
+            } else
+            {
+                StopCoroutine(ActivateBoostRefuel());
+                ActivateThruster();
+                _speed = 8f;
+            }
+        
+        } 
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isThrusterActive = false;
+
+            if (_isSpeedBoostActive)
+            {
+                _thruster.SetActive(false);
+                StartCoroutine(ActivateBoostRefuel());
+            }
+            else
+            {
+                _thruster.SetActive(false);
+                StartCoroutine(ActivateBoostRefuel());
+                _speed = 3.5f;
+            }
         }
     }
 
@@ -264,6 +302,44 @@ public class Player : MonoBehaviour
         _isBigShotActive = true;
         _bigShot.SetActive(true);
         StartCoroutine(BigShotPowerDownRoutine());
+    }
+
+    public void ActivateThruster()
+    {
+        isThrusterActive = true;
+
+        if(_boostValue > 0)
+        {
+            _thruster.SetActive(true);
+            _boostValue -= 15 * 2 * Time.deltaTime;
+            _uiManager.UpdateThrusterSlider(_boostValue);
+        }
+        else if (_boostValue <= 0)
+        {
+            _thruster.SetActive(false);
+            _boostValue = 0.0f;
+            _uiManager.UpdateThrusterSlider(_boostValue);
+        }
+    }
+
+    IEnumerator ActivateBoostRefuel()
+    {
+        while(_boostValue != 100 && isThrusterActive == false)
+        {
+            yield return new WaitForSeconds(.1f);
+            _boostValue += 30 * _reboostSpeed * Time.deltaTime;
+            _uiManager.UpdateThrusterSlider(_boostValue);
+
+            if(_boostValue >= 100)
+            {
+                _boostValue = 100;
+
+                _uiManager.UpdateThrusterSlider(_boostValue);
+
+                break;
+            }
+
+        }
     }
 
     IEnumerator TripleShotPowerDownRoutine()
