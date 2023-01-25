@@ -52,6 +52,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _reboostSpeed;
     private bool isThrusterActive;
+    [SerializeField]
+    private Camera _camera;
 
 
     
@@ -66,6 +68,7 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
+        _camera = GameObject.Find("Main Camera").GetComponent<Camera>();
 
         if (_spawnManager == null)
         {
@@ -84,6 +87,11 @@ public class Player : MonoBehaviour
         else
         {
             _audioSource.clip = _laserSoundClip;
+        }
+
+        if (_camera == null)
+        {
+            Debug.LogError("The Camera is null");
         }
 
         _uiManager.UpdateAmmo(_ammoCount);
@@ -228,10 +236,12 @@ public class Player : MonoBehaviour
         if (_lives == 2)
         {
             _rightEngine.SetActive(true);
+            _camera.ShakeCamera();
         }
         else if (_lives == 1)
         {
             _leftEngine.SetActive(true);
+            _camera.ShakeCamera();
         }
 
         _uiManager.UpdateLives(_lives);
@@ -240,6 +250,7 @@ public class Player : MonoBehaviour
         if (_lives < 1)
         {
             _spawnManager.OnPlayerDeath();
+            _camera.ShakeCamera();
             Destroy(this.gameObject);
             
         }
