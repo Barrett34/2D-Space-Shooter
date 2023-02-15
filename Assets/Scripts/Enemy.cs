@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     private GameObject _laserPrefab;
     private float _fireRate = 3.0f;
     private float _canFire = -1f;
+    private float _randomSideMovementRange;
+    
 
 
 
@@ -21,6 +23,7 @@ public class Enemy : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
         _animator = gameObject.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        _randomSideMovementRange = Random.Range(1f, 10f);
 
         if (_player == null)
         {
@@ -54,12 +57,17 @@ public class Enemy : MonoBehaviour
 
     void CalculateMovement()
     {
+
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
+
+        transform.position = new Vector3(Mathf.PingPong(Time.time, _randomSideMovementRange), transform.position.y, transform.position.z);
 
         if (transform.position.y < -5.2f)
         {
             transform.position = new Vector3(Random.Range(-9f, 9f), 11f, 0);
         }
+
+         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -9f, 9f), transform.position.y, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
