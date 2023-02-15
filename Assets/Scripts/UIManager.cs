@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateAmmo(int ammoCount)
     {
-        _ammoText.text = "Ammo: " + ammoCount.ToString();
+        _ammoText.text = "Ammo: " + ammoCount.ToString() + " /15";
         if (ammoCount == 0)
         {
             _reloadText.gameObject.SetActive(true);
