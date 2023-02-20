@@ -17,10 +17,12 @@ public class Powerup : MonoBehaviour
     private int _powerupID;
     [SerializeField]
     private AudioClip _clip;
+    private Player _player;
 
     void Start()
     {
         transform.position = new Vector3(Random.Range(-9f, 9f), 15f, 0f);
+        _player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     void Update()
@@ -30,6 +32,10 @@ public class Powerup : MonoBehaviour
         if (transform.position.y < -4.5f)
         {
             Destroy(this.gameObject);
+        }
+        else if (Input.GetKey(KeyCode.C))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, 5 * Time.deltaTime);
         }
     }
 
