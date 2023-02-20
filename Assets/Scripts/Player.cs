@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
             else if (_isSpeedDecreaserActive)
             {
                 _thruster.SetActive(false);
-                _speed = 1.0f;
+                _speed = _speedDecreaser;
             }
             else
             {
@@ -181,7 +181,7 @@ public class Player : MonoBehaviour
             else if (_isSpeedDecreaserActive)
             {
                 _thruster.SetActive(false);
-                _speed = 1.0f;
+                _speed = _speedDecreaser;
             }
             else
             {
