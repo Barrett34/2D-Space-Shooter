@@ -65,6 +65,8 @@ public class Powerup : MonoBehaviour
                     case 5:
                         player.BigShotActive();
                         break;
+                    case 6: player.SpeedDecreaserActive();
+                        break;
                     default:
                         break;
                 }

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed = 3.5f;
     private float _speedMultiplier = 2.5f;
+    private float _speedDecreaser = 1.0f;
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     private bool _isSpeedBoostActive = false;
     private bool _isBigShotActive = false;
     private bool _isShieldActive = false;
+    private bool _isSpeedDecreaserActive = false;
     [SerializeField]
     private GameObject _shield;
     [SerializeField]
@@ -153,7 +155,13 @@ public class Player : MonoBehaviour
                 StopCoroutine(ActivateBoostRefuel());
                 ActivateThruster();
                 _speed = 10f;
-            } else
+            }
+            else if (_isSpeedDecreaserActive)
+            {
+                _thruster.SetActive(false);
+                _speed = 1.0f;
+            }
+            else
             {
                 StopCoroutine(ActivateBoostRefuel());
                 ActivateThruster();
@@ -169,6 +177,11 @@ public class Player : MonoBehaviour
             {
                 _thruster.SetActive(false);
                 StartCoroutine(ActivateBoostRefuel());
+            }
+            else if (_isSpeedDecreaserActive)
+            {
+                _thruster.SetActive(false);
+                _speed = 1.0f;
             }
             else
             {
@@ -269,6 +282,13 @@ public class Player : MonoBehaviour
         StartCoroutine(SpeedBoostPowerDownRoutine());
     }
 
+    public void SpeedDecreaserActive()
+    {
+        _isSpeedDecreaserActive = true;
+        _speed = _speedDecreaser;
+        StartCoroutine(SpeedDecreaserRoutine());
+    }
+
     public void ShieldActive()
     {
         _shieldLevel = 3;
@@ -364,6 +384,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
         _speed /= _speedMultiplier;
+    }
+
+    IEnumerator SpeedDecreaserRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isSpeedDecreaserActive = false;
+        _speed = 3.5f;
     }
 
     IEnumerator BigShotPowerDownRoutine()
