@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -12,31 +13,54 @@ public class SpawnManager : MonoBehaviour
     private GameObject[] _powerups;
     [SerializeField]
     private bool _stopSpawning = false;
+    private int _waveNumber;
+    private int _killedEnemies;
+    private int _maxEnemies;
+    private int _enemiesWaitingToSpawn;
+
+    private UIManager _uiManager;
+   
+    
+
 
     void Start()
     {
-        
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
-    public void StartSpawning()
+    public void StartSpawning(int waveNumber)
     {
-        StartCoroutine(SpawnEnemyRoutine());
-        StartCoroutine(SpawnPowerupRoutine());
-        StartCoroutine(BigShotPowerupRoutine());
-        StartCoroutine(HomingMisslePowerupRoutine());
+            _stopSpawning = false;
+            _killedEnemies = 0;
+            _waveNumber = waveNumber;
+            _uiManager.DisplayWaveText(_waveNumber);
+            _enemiesWaitingToSpawn = _waveNumber + 5;
+            _maxEnemies = _waveNumber + 5;
+            StartCoroutine(SpawnEnemyRoutine());
+            StartCoroutine(SpawnPowerupRoutine());
+            StartCoroutine(BigShotPowerupRoutine());
+            StartCoroutine(HomingMisslePowerupRoutine());
     }
-
+        
     IEnumerator SpawnEnemyRoutine()
     {
         yield return new  WaitForSeconds(3f);
 
-        while (_stopSpawning == false)
+        while (_stopSpawning == false && _killedEnemies <= _maxEnemies)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
             newEnemy.transform.parent = _enemyContainer.transform;
+
+            _enemiesWaitingToSpawn--;
+            if(_enemiesWaitingToSpawn == 0)
+            {
+                _stopSpawning = true;
+            }
+
             yield return new WaitForSeconds(5.0f);
         }
+        StartSpawning(_waveNumber + 1);
     }
 
     IEnumerator SpawnPowerupRoutine()
@@ -79,6 +103,11 @@ public class SpawnManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         _stopSpawning = true;
+    }
+
+    public void EnemyIsDead()
+    {
+        _killedEnemies++;
     }
  
 }

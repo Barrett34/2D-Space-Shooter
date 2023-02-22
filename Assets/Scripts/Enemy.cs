@@ -13,12 +13,15 @@ public class Enemy : MonoBehaviour
     private float _fireRate = 3.0f;
     private float _canFire = -1f;
     private float _randomSideMovementRange;
+    private SpawnManager _spawnManager;
     
 
 
 
     void Start()
     {
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+
         transform.position = new Vector3(Random.Range(-9f,9f), 11, 0);
         _player = GameObject.Find("Player").GetComponent<Player>();
         _animator = gameObject.GetComponent<Animator>();
@@ -84,31 +87,40 @@ public class Enemy : MonoBehaviour
 
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0f;
-            Destroy(this.gameObject, 2.8f);
+            Destroy(this.gameObject, 1f);
             _audioSource.Play();
         }
 
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
-            _player.AddScore(10);
 
+            if (player != null)
+            {
+                _player.AddScore(10);
+            }
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0f;
-            Destroy(this.gameObject, 1.1f);
-            Destroy(GetComponent<Collider2D>());
+            GetComponent<Collider2D>().enabled = false;
             _audioSource.Play();
+            _spawnManager.EnemyIsDead();
+            Destroy(this.gameObject, 1f);
+            
         }
 
         if (other.tag == "BigShot" )
         {
-            
-            _player.AddScore(10);
 
+            if (player != null)
+            {
+                _player.AddScore(10);
+            }
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0f;
-            Destroy(this.gameObject, 1.1f);
+            GetComponent<Collider2D>().enabled = false;
             _audioSource.Play();
+            _spawnManager.EnemyIsDead();
+            Destroy(this.gameObject, 1f);
         }
             
         

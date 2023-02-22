@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     private Text _reloadText;
     [SerializeField]
     private Slider _thrusterSlider;
+    [SerializeField]
+    private Text _waveDisplayText;
    
 
 
@@ -76,6 +78,22 @@ public class UIManager : MonoBehaviour
         } else
         {
             _reloadText.gameObject.SetActive(false);
+        }
+    }
+
+    public void DisplayWaveText(int waveNumber)
+    {
+        _waveDisplayText.text = "Wave: " + waveNumber;
+        _waveDisplayText.gameObject.SetActive(true);
+        StartCoroutine(WaveDisplayRoutine());
+    }
+
+    IEnumerator WaveDisplayRoutine()
+    {
+        while(_waveDisplayText == true)
+        {
+            yield return new WaitForSeconds(5f);
+            _waveDisplayText.gameObject.SetActive(false);
         }
     }
 
