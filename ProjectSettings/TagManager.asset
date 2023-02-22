@@ -9,6 +9,7 @@ TagManager:
   - Shield
   - BigShot
   - EnemyLaser
+  - Missle
   layers:
   - Default
   - TransparentFX

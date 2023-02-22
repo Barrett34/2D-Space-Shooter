@@ -515,7 +515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -64.330444, y: -58.4924}
+  m_AnchoredPosition: {x: -64.33057, y: -58.49243}
   m_SizeDelta: {x: 99.5468, y: 28.9576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &324062258
@@ -839,6 +839,63 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3244338969712903050, guid: a680a9415ef4b4463949a218de6086ed, type: 3}
   m_PrefabInstance: {fileID: 1661993212}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &687878252
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4861201091994668092, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_Name
+      value: Homing_Missle_Powerup
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.342
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.504
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826006595241260096, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
 --- !u!1 &711530660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,6 +1915,7 @@ MonoBehaviour:
   - {fileID: 4889126290657377351, guid: bb16d78a096b7492daf6802a6ee4e635, type: 3}
   - {fileID: 2985530940950393180, guid: afec3e629f6ee43209603ab534533b17, type: 3}
   - {fileID: 9042494409493723508, guid: 38d5b678ac3ae4ace865905afd133041, type: 3}
+  - {fileID: 4861201091994668092, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
   _stopSpawning: 0
 --- !u!4 &1474169651
 Transform:
@@ -1994,6 +2052,7 @@ MonoBehaviour:
   _lives: 3
   _spawnManager: {fileID: 1474169650}
   _tripleShotPrefab: {fileID: 3532940398951600860, guid: 88494b897a1e84f0a89b3cfdf409ea64, type: 3}
+  _homingMisslePrefab: {fileID: 5957369764451421332, guid: 422911b4d772a46e69cc0ade5a96b693, type: 3}
   _shield: {fileID: 973068588}
   _score: 0
   _rightEngine: {fileID: 450402124}
@@ -2454,7 +2513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902693807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.007, y: -0.046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

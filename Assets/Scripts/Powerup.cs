@@ -73,6 +73,8 @@ public class Powerup : MonoBehaviour
                         break;
                     case 6: player.SpeedDecreaserActive();
                         break;
+                    case 7: player.HomingMissleActive();
+                        break;
                     default:
                         break;
                 }

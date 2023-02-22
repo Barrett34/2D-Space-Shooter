@@ -21,10 +21,13 @@ public class Player : MonoBehaviour
     private bool _isTripleShotActive = false;
     [SerializeField]
     private GameObject _tripleShotPrefab;
+    [SerializeField]
+    private GameObject _homingMisslePrefab;
     private bool _isSpeedBoostActive = false;
     private bool _isBigShotActive = false;
     private bool _isShieldActive = false;
     private bool _isSpeedDecreaserActive = false;
+    private bool _isHomingMissleActive = false;
     [SerializeField]
     private GameObject _shield;
     [SerializeField]
@@ -204,6 +207,10 @@ public class Player : MonoBehaviour
             {
                 Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
             }
+            else if (Input.GetKey(KeyCode.Space) && _isHomingMissleActive == true)
+            {
+                Instantiate(_homingMisslePrefab, transform.position, Quaternion.identity);
+            }
             else
             {
                 Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
@@ -265,6 +272,13 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
             
         }
+    }
+
+    public void HomingMissleActive()
+    {
+        _isHomingMissleActive = true;
+        StartCoroutine(HomingMisslePowerDownRoutine());
+
     }
 
     public void TripleShotActive()
@@ -397,6 +411,12 @@ public class Player : MonoBehaviour
         _isBigShotActive = false;
         _bigShot.SetActive(false);
        
+    }
+
+    IEnumerator HomingMisslePowerDownRoutine()
+    {
+        yield return new WaitForSeconds(45f);
+        _isHomingMissleActive = false;
     }
    
 
