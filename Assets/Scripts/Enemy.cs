@@ -87,8 +87,9 @@ public class Enemy : MonoBehaviour
 
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0f;
-            Destroy(this.gameObject, 1f);
             _audioSource.Play();
+            _spawnManager.EnemyIsDead();
+            Destroy(this.gameObject, 1f);
         }
 
         if (other.tag == "Laser")
