@@ -14,6 +14,11 @@ public class Enemy : MonoBehaviour
     private float _canFire = -1f;
     private float _randomSideMovementRange;
     private SpawnManager _spawnManager;
+    [SerializeField]
+    private int _enemyID;
+    private float _rammingSpeed = 6f;
+    private float _ramEnemySpeed = 2f;
+    private float _targetingDistance = 5f;
     
 
 
@@ -41,7 +46,41 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        CalculateMovement();
+        EnemyClass();
+
+    }
+
+    public void EnemyClass()
+    {
+        switch(_enemyID)
+        {
+            case 0:
+                LaserEnemy();
+                //LaserEnemyMovement();
+                break;
+            case 1:
+                RamEnemy();
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    
+
+    public void LaserEnemy()
+    {
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+
+        transform.position = new Vector3(Mathf.PingPong(Time.time, _randomSideMovementRange), transform.position.y, transform.position.z);
+
+        if (transform.position.y < -5.2f)
+        {
+            transform.position = new Vector3(Random.Range(-9f, 9f), 11f, 0);
+        }
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -9f, 9f), transform.position.y, 0);
 
         if (Time.time > _canFire)
         {
@@ -54,24 +93,29 @@ public class Enemy : MonoBehaviour
             {
                 lasers[i].AssignEnemyLaser();
             }
-            
+
         }
     }
 
-    void CalculateMovement()
+   
+
+    public void RamEnemy()
     {
 
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
-        transform.position = new Vector3(Mathf.PingPong(Time.time, _randomSideMovementRange), transform.position.y, transform.position.z);
 
         if (transform.position.y < -5.2f)
         {
             transform.position = new Vector3(Random.Range(-9f, 9f), 11f, 0);
         }
+        else if (Vector3.Distance(_player.transform.position, transform.position) < _targetingDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _rammingSpeed * Time.deltaTime);
+        }
 
-         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -9f, 9f), transform.position.y, 0);
     }
+              
 
     private void OnTriggerEnter2D(Collider2D other)
     {
