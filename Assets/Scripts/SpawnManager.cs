@@ -13,6 +13,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _enemies;
     [SerializeField]
+    private GameObject[] _rareEnemies;
+    [SerializeField]
     private bool _stopSpawning = false;
     private int _waveNumber;
     private int _killedEnemies;
@@ -41,11 +43,12 @@ public class SpawnManager : MonoBehaviour
             StartCoroutine(SpawnPowerupRoutine());
             StartCoroutine(BigShotPowerupRoutine());
             StartCoroutine(HomingMisslePowerupRoutine());
+        StartCoroutine(SpawnRareEnemyRoutine());
     }
         
     IEnumerator SpawnEnemyRoutine()
     {
-        yield return new  WaitForSeconds(3f);
+        yield return new  WaitForSeconds(7f);
 
         while (_stopSpawning == false && _killedEnemies <= _maxEnemies)
         {
@@ -56,6 +59,27 @@ public class SpawnManager : MonoBehaviour
 
             _enemiesWaitingToSpawn--;
             if(_enemiesWaitingToSpawn == 0)
+            {
+                _stopSpawning = true;
+            }
+
+            yield return new WaitForSeconds(5.0f);
+        }
+        StartSpawning(_waveNumber + 1);
+    }
+
+    IEnumerator SpawnRareEnemyRoutine()
+    {
+        yield return new WaitForSeconds(15f);
+
+        while (_stopSpawning == false && _killedEnemies <= _maxEnemies)
+        {
+            Vector3 posToSpawn = new Vector3(-11.5f, 3f, 0f);
+            GameObject newRareEnemy = Instantiate(_rareEnemies[0], posToSpawn, Quaternion.identity);
+            newRareEnemy.transform.parent = _enemyContainer.transform;
+
+            _enemiesWaitingToSpawn--;
+            if (_enemiesWaitingToSpawn == 0)
             {
                 _stopSpawning = true;
             }

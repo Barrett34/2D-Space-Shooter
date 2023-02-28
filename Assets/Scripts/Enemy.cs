@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int _enemyID;
     private float _rammingSpeed = 6f;
-    private float _ramEnemySpeed = 2f;
     private float _targetingDistance = 5f;
     
 
@@ -27,11 +26,11 @@ public class Enemy : MonoBehaviour
     {
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
 
-        transform.position = new Vector3(Random.Range(-9f,9f), 11, 0);
+        
         _player = GameObject.Find("Player").GetComponent<Player>();
         _animator = gameObject.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        _randomSideMovementRange = Random.Range(1f, 10f);
+        _randomSideMovementRange = Random.Range(-10f, 10f);
 
         if (_player == null)
         {
@@ -56,10 +55,12 @@ public class Enemy : MonoBehaviour
         {
             case 0:
                 LaserEnemy();
-                //LaserEnemyMovement();
                 break;
             case 1:
                 RamEnemy();
+                break;
+            case 2:
+                BomberEnemy();
                 break;
             default:
                 break;
@@ -87,6 +88,31 @@ public class Enemy : MonoBehaviour
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+
+            for (int i = 0; i < lasers.Length; i++)
+            {
+                lasers[i].AssignEnemyLaser();
+            }
+
+        }
+    }
+
+    public void BomberEnemy()
+    {
+        transform.Translate(Vector3.right * _speed * Time.deltaTime);
+
+        if (transform.position.x > 13.3f)
+        {
+            transform.position = new Vector3(Random.Range(-12f, -11.5f), Random.Range(2f, 3f), 0);
+        }
+
+        if (Time.time > _canFire)
+        {
+            Vector3 offset = new Vector3(.15f, -1f, 0);
+            _fireRate = Random.Range(1.4f, 3f);
+            _canFire = Time.time + _fireRate;
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
             Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
 
             for (int i = 0; i < lasers.Length; i++)

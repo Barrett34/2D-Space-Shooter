@@ -1861,7 +1861,9 @@ MonoBehaviour:
   - {fileID: 4861201091994668092, guid: 3904f14b290ad45b3be324f0ee15ca7e, type: 3}
   _enemies:
   - {fileID: 2585608740633397138, guid: f12dfbfa9b01f4fc5a40f3581821af98, type: 3}
-  - {fileID: 3850081037296255478, guid: 69055dd7901a54e17b2654a728c4c58f, type: 3}
+  - {fileID: 6490186209078243997, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
+  _rareEnemies:
+  - {fileID: 3231756291718575302, guid: 22c88d5508a244d588b6c3d233ecc352, type: 3}
   _stopSpawning: 0
 --- !u!4 &1474169651
 Transform:
@@ -2074,7 +2076,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601863033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.04, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 0.5029274, y: 0.5346, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2854,79 +2856,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92fd443ecca434aa5916b4263029a518, type: 3}
---- !u!1001 &6490186207767345681
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6490186209078243969, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243971, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6490186209078243997, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
-      propertyPath: m_Name
-      value: NightRammerEnemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e2609b3bddcb04b61b40afa158349956, type: 3}
 --- !u!1001 &6678768471310838422
 PrefabInstance:
   m_ObjectHideFlags: 0
