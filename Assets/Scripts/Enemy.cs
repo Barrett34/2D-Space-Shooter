@@ -192,7 +192,7 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
             _enemyShieldLevel--;
             _enemyShield.SetActive(false);
-            StartCoroutine(ShieldChange());
+            _isEnemyShieldActive = false;
             return;
         }
 
@@ -220,6 +220,7 @@ public class Enemy : MonoBehaviour
         _enemyShieldLevel = 1;
         _isEnemyShieldActive = true;
         _enemyShield.SetActive(true);
+        Debug.Log("Shield Active is TRUE");
         
     }
 
@@ -233,9 +234,4 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator ShieldChange()
-    {
-        yield return new WaitForSeconds(.5f);
-        _isEnemyShieldActive = false;
-    }
 }

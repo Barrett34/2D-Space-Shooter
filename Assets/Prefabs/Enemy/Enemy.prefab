@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 4
   _laserPrefab: {fileID: 2034961071729521298, guid: bb76d188a97eb4b968da4acdc78369d7, type: 3}
-  _enemyShield: {fileID: 7879219969859230561, guid: afd8405d0c6814655b7e51d08b29111c, type: 3}
+  _enemyShield: {fileID: 5254133069648881550}
   _isEnemyShieldActive: 0
   _enemyID: 0
 --- !u!50 &7941396835283980819
@@ -281,10 +281,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_shield
       objectReference: {fileID: 0}
-    - target: {fileID: 7879219969859230561, guid: afd8405d0c6814655b7e51d08b29111c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7879219969859230562, guid: afd8405d0c6814655b7e51d08b29111c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -329,14 +325,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7879219969859230588, guid: afd8405d0c6814655b7e51d08b29111c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afd8405d0c6814655b7e51d08b29111c, type: 3}
 --- !u!4 &5254133069648881549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7879219969859230562, guid: afd8405d0c6814655b7e51d08b29111c, type: 3}
+  m_PrefabInstance: {fileID: 2716500575076383983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5254133069648881550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7879219969859230561, guid: afd8405d0c6814655b7e51d08b29111c, type: 3}
   m_PrefabInstance: {fileID: 2716500575076383983}
   m_PrefabAsset: {fileID: 0}
