@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -10,6 +11,12 @@ public class Enemy : MonoBehaviour
     private AudioSource _audioSource;
     [SerializeField]
     private GameObject _laserPrefab;
+    [SerializeField]
+    private GameObject _enemyShield;
+    [SerializeField]
+    private bool _isEnemyShieldActive = false;
+    private int _enemyShieldLevel;
+    private int _chanceForEnemyShield;
     private float _fireRate = 3.0f;
     private float _canFire = -1f;
     private float _randomSideMovementRange;
@@ -25,12 +32,12 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
-
-        
         _player = GameObject.Find("Player").GetComponent<Player>();
         _animator = gameObject.GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         _randomSideMovementRange = Random.Range(-10f, 10f);
+        _enemyShield.SetActive(false);
+        EnemyShieldChance();
 
         if (_player == null)
         {
@@ -72,6 +79,7 @@ public class Enemy : MonoBehaviour
 
     public void LaserEnemy()
     {
+
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
         transform.position = new Vector3(Mathf.PingPong(Time.time, _randomSideMovementRange), transform.position.y, transform.position.z);
@@ -162,24 +170,35 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject, 1f);
         }
 
-        if (other.tag == "Laser")
+        if (other.tag == "Laser" && _isEnemyShieldActive == false)
+        {
+            if (player != null)
+            {
+                _player.AddScore(10);
+            }
+
+            Destroy(other.gameObject);
+            _animator.SetTrigger("OnEnemyDeath");
+            _speed = 0f;
+            GetComponent<Collider2D>().enabled = false;
+            _audioSource.Play();
+            _spawnManager.EnemyIsDead();
+            Destroy(this.gameObject, 1f);
+            
+        }
+
+        if (other.tag == "Laser" && _isEnemyShieldActive == true)
         {
             Destroy(other.gameObject);
-
-            if (player != null)
-            {
-                _player.AddScore(10);
-            }
-            _animator.SetTrigger("OnEnemyDeath");
-            _speed = 0f;
-            GetComponent<Collider2D>().enabled = false;
-            _audioSource.Play();
-            _spawnManager.EnemyIsDead();
-            Destroy(this.gameObject, 1f);
-            
+            _enemyShieldLevel--;
+            _enemyShield.SetActive(false);
+            StartCoroutine(ShieldChange());
+            return;
         }
 
-        if (other.tag == "BigShot" )
+
+
+        if (other.tag == "BigShot")
         {
 
             if (player != null)
@@ -193,7 +212,30 @@ public class Enemy : MonoBehaviour
             _spawnManager.EnemyIsDead();
             Destroy(this.gameObject, 1f);
         }
-            
         
+    }
+
+    private void EnemyShieldActive()
+    {
+        _enemyShieldLevel = 1;
+        _isEnemyShieldActive = true;
+        _enemyShield.SetActive(true);
+        
+    }
+
+    private void EnemyShieldChance()
+    {
+        _chanceForEnemyShield = Random.Range(0, 3);
+
+        if (_chanceForEnemyShield == 0)
+        {
+            EnemyShieldActive();
+        }
+    }
+
+    IEnumerator ShieldChange()
+    {
+        yield return new WaitForSeconds(.5f);
+        _isEnemyShieldActive = false;
     }
 }

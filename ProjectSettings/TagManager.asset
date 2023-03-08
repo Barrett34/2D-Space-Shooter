@@ -10,6 +10,7 @@ TagManager:
   - BigShot
   - EnemyLaser
   - Missle
+  - Enemy_Shield
   layers:
   - Default
   - TransparentFX
