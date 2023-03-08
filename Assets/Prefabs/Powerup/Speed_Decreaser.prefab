@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3061719945780577272}
   - component: {fileID: 9170585436876734595}
   m_Layer: 0
-  m_Name: Speed Decreaser
+  m_Name: Speed_Decreaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
