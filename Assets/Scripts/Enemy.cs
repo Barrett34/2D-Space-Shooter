@@ -25,6 +25,11 @@ public class Enemy : MonoBehaviour
     private int _enemyID;
     private float _rammingSpeed = 6f;
     private float _targetingDistance = 5f;
+    [SerializeField]
+    private float _rayDistance = 1.0f;
+    [SerializeField]
+    private float _rayCastRad = 0.5f;
+
     
 
 
@@ -68,6 +73,9 @@ public class Enemy : MonoBehaviour
                 break;
             case 2:
                 BomberEnemy();
+                break;
+            case 3:
+                SmartEnemy();
                 break;
             default:
                 break;
@@ -149,7 +157,17 @@ public class Enemy : MonoBehaviour
         }
 
     }
-              
+
+    public void SmartEnemy()
+    {
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+
+        RearLaserShotCast();
+        
+    }
+
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -231,6 +249,38 @@ public class Enemy : MonoBehaviour
         if (_chanceForEnemyShield == 0)
         {
             EnemyShieldActive();
+        }
+    }
+
+    private void RearLaserShotCast()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, _rayCastRad, Vector2.up, _rayDistance, LayerMask.GetMask("Player"));
+        Debug.DrawRay(transform.position, Vector3.up, Color.cyan);
+        if(hit.collider != null)
+        {
+            if (hit.collider.CompareTag("Player") && Time.time > _canFire)
+            {
+                Debug.Log("Player Detected");
+                FireRearLaserShot();
+                
+            }
+        }
+    }
+
+    private void FireRearLaserShot()
+    {
+        if (Time.time > _canFire)
+        {
+            Vector3 offset = new Vector3(0f, 1f, 0f);
+            _fireRate = Random.Range(1.5f, 3f);
+            _canFire = Time.time + _fireRate;
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + offset, Quaternion.Euler(transform.position.x, transform.position.y, 180.0f));
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+
+            for (int i = 0; i < lasers.Length; i++)
+            {
+                lasers[i].AssignEnemyLaser();
+            }
         }
     }
 
