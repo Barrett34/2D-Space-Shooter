@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2436172280054988145}
   - component: {fileID: 9050214987509217045}
   - component: {fileID: -2785550008641042418}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triple_Shot_Powerup
-  m_TagString: Untagged
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

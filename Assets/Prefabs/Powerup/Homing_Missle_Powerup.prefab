@@ -96,9 +96,9 @@ GameObject:
   - component: {fileID: -6480091225582062133}
   - component: {fileID: 2137479182754912137}
   - component: {fileID: -5313325010287239268}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Homing_Missle_Powerup
-  m_TagString: Untagged
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

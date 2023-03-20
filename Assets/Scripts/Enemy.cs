@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _rayDistance = 1.0f;
     [SerializeField]
-    private float _rayCastRad = 0.5f;
+    private float _rayCastRad = 1f;
 
     
 
@@ -77,6 +77,9 @@ public class Enemy : MonoBehaviour
             case 3:
                 SmartEnemy();
                 break;
+            case 4:
+                PowerupDestroyEnemy();
+                    break;
             default:
                 break;
 
@@ -161,9 +164,13 @@ public class Enemy : MonoBehaviour
     public void SmartEnemy()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-
         RearLaserShotCast();
-        
+    }
+
+    public void PowerupDestroyEnemy()
+    {
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        DestroyPowerupShot();
     }
 
 
@@ -255,14 +262,12 @@ public class Enemy : MonoBehaviour
     private void RearLaserShotCast()
     {
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, _rayCastRad, Vector2.up, _rayDistance, LayerMask.GetMask("Player"));
-        Debug.DrawRay(transform.position, Vector3.up, Color.cyan);
+
         if(hit.collider != null)
         {
             if (hit.collider.CompareTag("Player") && Time.time > _canFire)
             {
-                Debug.Log("Player Detected");
                 FireRearLaserShot();
-                
             }
         }
     }
@@ -275,6 +280,36 @@ public class Enemy : MonoBehaviour
             _fireRate = Random.Range(1.5f, 3f);
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + offset, Quaternion.Euler(transform.position.x, transform.position.y, 180.0f));
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+
+            for (int i = 0; i < lasers.Length; i++)
+            {
+                lasers[i].AssignEnemyLaser();
+            }
+        }
+    }
+
+    private void DestroyPowerupShot()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 2.0f, Vector2.down, _rayDistance, LayerMask.GetMask("Powerup"));
+
+        if (hit.collider != null)
+        {
+            if (hit.collider.CompareTag("Powerup") && Time.time > _canFire)
+            {
+                Debug.DrawRay(transform.position, Vector2.down * 8f, Color.green);
+                FirePowerupShot();
+            }
+        }
+    }
+
+    private void FirePowerupShot()
+    {
+        if (Time.time > _canFire)
+        {
+            _fireRate = Random.Range(1f, 1.5f);
+            _canFire = Time.time + _fireRate;
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
             Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
 
             for (int i = 0; i < lasers.Length; i++)

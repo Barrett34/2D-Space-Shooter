@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2985530940950393183}
   - component: {fileID: 2985530940950393182}
   - component: {fileID: 2985530940950393181}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Big_Shot_Powerup
-  m_TagString: Untagged
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

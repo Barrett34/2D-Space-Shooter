@@ -41,7 +41,11 @@ public class Powerup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if(other.tag == "Laser")
+        {
+            Destroy(this.gameObject);
+            Destroy(other.gameObject);
+        }
 
         if (other.tag == "Player")
         {
@@ -51,7 +55,7 @@ public class Powerup : MonoBehaviour
                 AudioSource.PlayClipAtPoint(_clip, transform.position);
 
             {
-                switch(_powerupID)
+                switch (_powerupID)
                 {
                     case 0:
                         player.TripleShotActive();
@@ -71,17 +75,18 @@ public class Powerup : MonoBehaviour
                     case 5:
                         player.BigShotActive();
                         break;
-                    case 6: player.SpeedDecreaserActive();
+                    case 6:
+                        player.SpeedDecreaserActive();
                         break;
-                    case 7: player.HomingMissleActive();
+                    case 7:
+                        player.HomingMissleActive();
                         break;
                     default:
                         break;
                 }
             }
-            
+
             Destroy(this.gameObject);
-            
-        }
+        }   
     }
 }
