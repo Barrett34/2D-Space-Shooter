@@ -80,6 +80,9 @@ public class Enemy : MonoBehaviour
             case 4:
                 PowerupDestroyEnemy();
                     break;
+            case 5:
+                DodgingEnemy();
+                break;
             default:
                 break;
 
@@ -164,13 +167,37 @@ public class Enemy : MonoBehaviour
     public void SmartEnemy()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
+
+        if (transform.position.y < -5.2f)
+        {
+            transform.position = new Vector3(Random.Range(-9f, 9f), 11f, 0);
+        }
+
         RearLaserShotCast();
     }
 
     public void PowerupDestroyEnemy()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
+
+        if (transform.position.y < -5.2f)
+        {
+            transform.position = new Vector3(Random.Range(-9f, 9f), 11f, 0);
+        }
+
         DestroyPowerupShot();
+    }
+
+    public void DodgingEnemy()
+    {
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+
+        if (transform.position.y < -5.2f)
+        {
+            transform.position = new Vector3(Random.Range(-9f, 9f), 11f, 0);
+        }
+
+        DodgeLaser();
     }
 
 
@@ -292,6 +319,7 @@ public class Enemy : MonoBehaviour
     private void DestroyPowerupShot()
     {
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, 2.0f, Vector2.down, _rayDistance, LayerMask.GetMask("Powerup"));
+        Debug.DrawRay(transform.position, Vector3.down * 10f, Color.red);
 
         if (hit.collider != null)
         {
@@ -315,6 +343,26 @@ public class Enemy : MonoBehaviour
             for (int i = 0; i < lasers.Length; i++)
             {
                 lasers[i].AssignEnemyLaser();
+            }
+        }
+    }
+
+    private void DodgeLaser()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 2f, Vector2.down, 10f);
+        Debug.DrawRay(transform.position, Vector3.down * 10f, Color.red);
+
+
+        float moveRandomSide = Random.Range(-1, 4);
+
+        if (hit.collider != null)
+        {
+            bool _canDodge = true;
+
+            if (hit.collider.CompareTag("Laser") && _canDodge == true)
+            {
+                transform.position = new Vector3(transform.position.x - moveRandomSide, transform.position.y, transform.position.z);
+                _canDodge = false;
             }
         }
     }
