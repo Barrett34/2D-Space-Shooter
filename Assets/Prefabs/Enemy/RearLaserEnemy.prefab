@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2
   _laserPrefab: {fileID: 2034961071729521298, guid: bb76d188a97eb4b968da4acdc78369d7, type: 3}
-  _enemyShield: {fileID: 0}
+  _enemyShield: {fileID: 2403307661022499573, guid: 19599bd1895f74ebe8b903044600fca9, type: 3}
   _isEnemyShieldActive: 0
   _enemyID: 3
   _rayDistance: 8
@@ -165,7 +165,7 @@ Animator:
   m_GameObject: {fileID: 1916936524545349999}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 243c7787bfdec408c9865be5de599628, type: 2}
+  m_Controller: {fileID: 9100000, guid: 956ce3c5875994afe80a5f9cc2e8352d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

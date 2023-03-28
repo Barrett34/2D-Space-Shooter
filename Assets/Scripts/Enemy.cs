@@ -224,11 +224,8 @@ public class Enemy : MonoBehaviour
 
         if (other.tag == "Laser" && _isEnemyShieldActive == false)
         {
-            if (player != null)
-            {
-                _player.AddScore(10);
-            }
-
+            
+            _player.AddScore(10);
             Destroy(other.gameObject);
             _animator.SetTrigger("OnEnemyDeath");
             _speed = 0f;
@@ -280,10 +277,10 @@ public class Enemy : MonoBehaviour
     {
         _chanceForEnemyShield = Random.Range(0, 3);
 
-        if (_chanceForEnemyShield == 0)
+        if (_chanceForEnemyShield == 0 && _enemyID == 0)
         {
             EnemyShieldActive();
-        }
+        } 
     }
 
     private void RearLaserShotCast()

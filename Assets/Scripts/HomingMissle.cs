@@ -10,7 +10,7 @@ public class HomingMissle : MonoBehaviour
     private float _distance;
     private float _closestEnemy = Mathf.Infinity;
     private float _speed = 900f;
-    private float _rotationSpeed = 800f;
+    private float _rotationSpeed = 700f;
 
     [SerializeField]
     private Rigidbody2D homingProjectileRigidBody;
@@ -78,7 +78,16 @@ public class HomingMissle : MonoBehaviour
         if(transform.position.y > 8f || transform.position.y < -8f || transform.position.x > 11f || transform.position.x < -11f)
         {
             Destroy(this.gameObject);
+        } else
+        {
+            StartCoroutine(SelfDestruct());
         }
+    }
+
+    IEnumerator SelfDestruct()
+    {
+        yield return new WaitForSeconds(2.5f);
+        Destroy(this.gameObject);
     }
     
 
