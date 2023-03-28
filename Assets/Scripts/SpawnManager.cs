@@ -38,10 +38,11 @@ public class SpawnManager : MonoBehaviour
     {
             if (waveNumber <= 2)
         {
-            _stopSpawning = false;
+            
             _killedEnemies = 0;
             _waveNumber = waveNumber;
             _uiManager.DisplayWaveText(_waveNumber);
+            _stopSpawning = false;
             _enemiesWaitingToSpawn = _waveNumber + 5;
             _maxEnemies = _waveNumber + 5;
             StartCoroutine(SpawnEnemyRoutine());
@@ -49,10 +50,10 @@ public class SpawnManager : MonoBehaviour
             StartCoroutine(SpawnFrequentPowerupRoutine());
         } else if (waveNumber >= 3)
         {
-            _stopSpawning = false;
             _killedEnemies = 0;
             _waveNumber = waveNumber;
             _uiManager.DisplayWaveText(_waveNumber);
+            _stopSpawning = false;
             _enemiesWaitingToSpawn = _waveNumber + 5;
             _maxEnemies = _waveNumber + 5;
             StartCoroutine(SpawnEnemyRoutine());
@@ -81,7 +82,7 @@ public class SpawnManager : MonoBehaviour
                 _stopSpawning = true;
             }
 
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(10.0f);
         }
         StartSpawning(_waveNumber + 1);
     }

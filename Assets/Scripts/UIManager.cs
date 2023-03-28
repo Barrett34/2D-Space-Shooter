@@ -92,7 +92,7 @@ public class UIManager : MonoBehaviour
     {
         while(_waveDisplayText == true)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(10f);
             _waveDisplayText.gameObject.SetActive(false);
         }
     }
