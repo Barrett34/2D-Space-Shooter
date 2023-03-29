@@ -38,11 +38,10 @@ public class SpawnManager : MonoBehaviour
     {
             if (waveNumber <= 2)
         {
-            
+            _stopSpawning = false;
             _killedEnemies = 0;
             _waveNumber = waveNumber;
             _uiManager.DisplayWaveText(_waveNumber);
-            _stopSpawning = false;
             _enemiesWaitingToSpawn = _waveNumber + 5;
             _maxEnemies = _waveNumber + 5;
             StartCoroutine(SpawnEnemyRoutine());
@@ -69,7 +68,7 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new  WaitForSeconds(10f);
 
-        while (_stopSpawning == false && _killedEnemies <= _maxEnemies)
+        while (_stopSpawning == false && _killedEnemies < _maxEnemies)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             int randomEnemy = Random.Range(0, 2);
@@ -77,7 +76,8 @@ public class SpawnManager : MonoBehaviour
             newEnemy.transform.parent = _enemyContainer.transform;
 
             _enemiesWaitingToSpawn--;
-            if(_enemiesWaitingToSpawn == 0)
+
+            if(_killedEnemies == _maxEnemies)
             {
                 _stopSpawning = true;
             }
@@ -91,7 +91,7 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(10f);
 
-        while (_stopSpawning == false && _killedEnemies <= _maxEnemies)
+        while (_stopSpawning == false && _killedEnemies < _maxEnemies)
         {
             Vector3 posToSpawn = new Vector3(-11.5f, 3f, 0f);
             int randomEnemy = Random.Range(0, 4);
@@ -99,7 +99,7 @@ public class SpawnManager : MonoBehaviour
             newRareEnemy.transform.parent = _enemyContainer.transform;
 
             _enemiesWaitingToSpawn--;
-            if (_enemiesWaitingToSpawn == 0)
+            if (_killedEnemies == _maxEnemies)
             {
                 _stopSpawning = true;
             }
@@ -111,14 +111,14 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnPowerupRoutine()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
 
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             int randomPowerup = Random.Range(0, 4);
             GameObject newPowerup = Instantiate(_powerups[randomPowerup], posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(3f, 7f));
+            yield return new WaitForSeconds(Random.Range(3f, 10f));
         }
     }
 
@@ -137,7 +137,7 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnFrequentPowerupRoutine()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
 
         while(_stopSpawning == false)
         {
