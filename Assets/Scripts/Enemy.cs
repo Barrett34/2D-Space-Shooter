@@ -216,10 +216,11 @@ public class Enemy : MonoBehaviour
             }
 
             _animator.SetTrigger("OnEnemyDeath");
-            _speed = 0f;
             _audioSource.Play();
             _spawnManager.EnemyIsDead();
             Destroy(this.gameObject, 1f);
+            _speed = 0f;
+
         }
 
         if (other.tag == "Laser" && _isEnemyShieldActive == false)
@@ -228,12 +229,12 @@ public class Enemy : MonoBehaviour
             _player.AddScore(10);
             Destroy(other.gameObject);
             _animator.SetTrigger("OnEnemyDeath");
-            _speed = 0f;
             GetComponent<Collider2D>().enabled = false;
             _audioSource.Play();
             _spawnManager.EnemyIsDead();
             Destroy(this.gameObject, 1f);
-            
+            _speed = 0f;
+
         }
 
         if (other.tag == "Laser" && _isEnemyShieldActive == true)
