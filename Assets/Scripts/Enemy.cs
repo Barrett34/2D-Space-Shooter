@@ -26,9 +26,9 @@ public class Enemy : MonoBehaviour
     private float _rammingSpeed = 6f;
     private float _targetingDistance = 5f;
     [SerializeField]
-    private float _rayDistance = 1.0f;
+    private float _rayDistance = 2.0f;
     [SerializeField]
-    private float _rayCastRad = 1f;
+    private float _rayCastRad = 2f;
 
     
 
@@ -301,11 +301,13 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time > _canFire)
         {
-            Vector3 offset = new Vector3(0f, 1f, 0f);
+            Vector3 offset = new Vector3(0f, .75f, 0f);
             _fireRate = Random.Range(1.5f, 3f);
             _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + offset, Quaternion.Euler(transform.position.x, transform.position.y, 180.0f));
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + offset, Quaternion.Euler(transform.position.x, transform.position.y, 175.6f));
             Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+
+            Debug.DrawRay(transform.position, Vector2.up, Color.blue);
 
             for (int i = 0; i < lasers.Length; i++)
             {
@@ -316,7 +318,7 @@ public class Enemy : MonoBehaviour
 
     private void DestroyPowerupShot()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 2.0f, Vector2.down, _rayDistance, LayerMask.GetMask("Powerup"));
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, _rayCastRad, Vector2.down, _rayDistance, LayerMask.GetMask("Powerup"));
         Debug.DrawRay(transform.position, Vector3.down * 10f, Color.red);
 
         if (hit.collider != null)
