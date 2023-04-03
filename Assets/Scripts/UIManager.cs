@@ -83,16 +83,24 @@ public class UIManager : MonoBehaviour
 
     public void DisplayWaveText(int waveNumber)
     {
-        _waveDisplayText.text = "Wave: " + waveNumber;
-        _waveDisplayText.gameObject.SetActive(true);
-        StartCoroutine(WaveDisplayRoutine());
+        if (waveNumber <= 5)
+        {
+            _waveDisplayText.text = "Wave: " + waveNumber;
+            _waveDisplayText.gameObject.SetActive(true);
+            StartCoroutine(WaveDisplayRoutine());
+        } else if (waveNumber > 5)
+        {
+            _waveDisplayText.text = "Boss Wave";
+            _waveDisplayText.gameObject.SetActive(true);
+            StartCoroutine(WaveDisplayRoutine());
+        }
     }
 
     IEnumerator WaveDisplayRoutine()
     {
         while(_waveDisplayText == true)
         {
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(8f);
             _waveDisplayText.gameObject.SetActive(false);
         }
     }
