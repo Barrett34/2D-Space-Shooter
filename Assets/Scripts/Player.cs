@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     private bool _isBigShotActive = false;
     private bool _isShieldActive = false;
     private bool _isSpeedDecreaserActive = false;
-    private bool _isHomingMissleActive = false;
+    public bool _isHomingMissleActive = false;
     [SerializeField]
     private GameObject _shield;
     [SerializeField]

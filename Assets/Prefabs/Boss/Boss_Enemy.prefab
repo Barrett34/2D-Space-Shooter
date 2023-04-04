@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5381540430281564388}
   m_Layer: 0
   m_Name: Boss_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 280265532802492256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.51, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.9, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -435,3 +435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
+  _laserPrefab: {fileID: 2384782161777182095, guid: d481d1c25545e4e5f9a99a4360a0c4c4, type: 3}
+  _laserSpreadShotPrefab: {fileID: 3226366552858199345, guid: c47612cac8ace4a54838dabe528f27c6, type: 3}
+  _bossHealthPoints: 100
