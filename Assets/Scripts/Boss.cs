@@ -9,8 +9,14 @@ public class Boss : MonoBehaviour
     private float _speed = 3f;
     private bool _canStrafe;
     private int _strafeDirection = 1;
-    private float _canFire = -1f;
-    private float _fireRate = 3f;
+    private float _tripleShotCanFire = -1f;
+    private float _tripleShotFireRate;
+    private float _spreadShotCanFire = -1f;
+    private float _spreadShotFireRate;
+    [SerializeField]
+    private Vector3 _tripleShotOffset = new Vector3(0, -2.0f, 0);
+    [SerializeField]
+    private Vector3 _spreadShotOffset = new Vector3(0, -2.51f, 0);
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
@@ -55,39 +61,38 @@ public class Boss : MonoBehaviour
 
     public void FireTripleLaserShot()
     {
-        if (Time.time > _canFire)
+        if (Time.time > _tripleShotCanFire)
         {
-            Vector3 offset = new Vector3(0, -2.0f, 0);
-            _fireRate = Random.Range(3f, 4f);
-            _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
+            _tripleShotFireRate = Random.Range(3f, 4f);
+            _tripleShotCanFire = Time.time + _tripleShotFireRate;
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + _tripleShotOffset, Quaternion.identity);
             Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
 
             for (int i = 0; i < lasers.Length; i++)
             {
                 lasers[i].AssignEnemyLaser();
             }
-
+            Debug.Log("Triple Shot Fired");
         }
-        Debug.Log("Triple Shot Fired");
+       
     }
 
     public void FireSpreadLaserShot()
     {
-        if (Time.time > _canFire)
+        if (Time.time > _spreadShotCanFire)
         {
-            _fireRate = Random.Range(.75f, 1.25f);
-            _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserSpreadShotPrefab, transform.position, Quaternion.identity);
+            _spreadShotFireRate = Random.Range(.75f, 1.25f);
+            _spreadShotCanFire = Time.time + _spreadShotFireRate;
+            GameObject enemyLaser = Instantiate(_laserSpreadShotPrefab, transform.position + _spreadShotOffset, Quaternion.identity);
             Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
 
             for (int i = 0; i < lasers.Length; i++)
             {
                 lasers[i].AssignEnemyLaser();
             }
-
+            Debug.Log("Spread Shot Fired");
         }
-        Debug.Log("Spread Shot Fired");
+        
     }
 
     
