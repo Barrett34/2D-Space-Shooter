@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
    [SerializeField]
    private bool _isGameOver;
+   [SerializeField]
+   private bool _isGameCompleted;
 
     private void Update()
     {
@@ -16,10 +18,20 @@ public class GameManager : MonoBehaviour
 
             SceneManager.LoadScene(1);
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && _isGameCompleted == true)
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 
     public void GameOver()
     {
         _isGameOver = true;
+    }
+
+    public void GameCompleted()
+    {
+        _isGameCompleted = true;
     }
 }

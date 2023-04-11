@@ -26,6 +26,9 @@ public class UIManager : MonoBehaviour
     private Slider _thrusterSlider;
     [SerializeField]
     private Text _waveDisplayText;
+    [SerializeField]
+    private Text _gameCompletedText;
+
    
 
 
@@ -37,6 +40,7 @@ public class UIManager : MonoBehaviour
         _gameOver.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
         _reloadText.gameObject.SetActive(false);
+        _gameCompletedText.gameObject.SetActive(false);
 
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
@@ -128,5 +132,24 @@ public class UIManager : MonoBehaviour
             _restartText.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    IEnumerator GameCompletedRoutine()
+    {
+        while(true)
+        {
+            _gameCompletedText.gameObject.SetActive(true);
+            _restartText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            _gameCompletedText.gameObject.SetActive(false);
+            _restartText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    public void GameCompletedSequence()
+    {
+        _gameManager.GameCompleted();
+        StartCoroutine(GameCompletedRoutine());
     }
 }

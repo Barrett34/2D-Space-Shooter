@@ -24,6 +24,7 @@ public class Boss : MonoBehaviour
     private Player _player;
     [SerializeField]
     private int _bossHealthPoints = 100;
+    private UIManager _uiManager;
 
 
 
@@ -33,6 +34,7 @@ public class Boss : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
+        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
 
         transform.position = new Vector3(0, 9f, 0);
     }
@@ -160,6 +162,7 @@ public class Boss : MonoBehaviour
         if (_bossHealthPoints <= 0)
         {
             Destroy(this.gameObject);
+            _uiManager.GameCompletedSequence(); 
         }
     }
 
