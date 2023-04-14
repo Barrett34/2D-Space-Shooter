@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Boss : MonoBehaviour
 {
@@ -23,7 +22,7 @@ public class Boss : MonoBehaviour
     private GameObject _laserSpreadShotPrefab;
     private Player _player;
     [SerializeField]
-    private int _bossHealthPoints = 60;
+    private int _bossHealthPoints = 80;
     private UIManager _uiManager;
 
 
