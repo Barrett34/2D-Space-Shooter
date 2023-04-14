@@ -23,7 +23,7 @@ public class Boss : MonoBehaviour
     private GameObject _laserSpreadShotPrefab;
     private Player _player;
     [SerializeField]
-    private int _bossHealthPoints = 100;
+    private int _bossHealthPoints = 60;
     private UIManager _uiManager;
 
 
@@ -33,13 +33,20 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _player = GameObject.Find("Player").GetComponent<Player>();
-        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-
         transform.position = new Vector3(0, 9f, 0);
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _player = GameObject.Find("Player").GetComponent<Player>();
+
+        if (_uiManager == null)
+        {
+            Debug.LogError("UI Manager is null");
+        }
+        
+       
+
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
         {

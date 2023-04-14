@@ -41,7 +41,6 @@ public class UIManager : MonoBehaviour
         _restartText.gameObject.SetActive(false);
         _reloadText.gameObject.SetActive(false);
         _gameCompletedText.gameObject.SetActive(false);
-
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         if(_gameManager == null)

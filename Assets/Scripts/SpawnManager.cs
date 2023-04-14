@@ -38,47 +38,43 @@ public class SpawnManager : MonoBehaviour
 
     public void StartSpawning(int waveNumber)
     {
-        //    if (waveNumber <= 3)
-        //{
-        //    _stopSpawning = false;
-        //    _killedEnemies = 0;
-        //    _waveNumber = waveNumber;
-        //    _uiManager.DisplayWaveText(_waveNumber);
-        //    _enemiesWaitingToSpawn = _waveNumber + 1;
-        //    _maxEnemies = _waveNumber + 1;
-        //    StartCoroutine(SpawnEnemyRoutine());
-        //    StartCoroutine(SpawnPowerupRoutine());
-        //    StartCoroutine(SpawnFrequentPowerupRoutine());
-        //}
-        //else if (waveNumber >= 3 && waveNumber <= 5)
-        //{
-        //    _killedEnemies = 0;
-        //    _waveNumber = waveNumber;
-        //    _uiManager.DisplayWaveText(_waveNumber);
-        //    _stopSpawning = false;
-        //    _enemiesWaitingToSpawn = _waveNumber + 1;
-        //    _maxEnemies = _waveNumber + 1;
-        //    StartCoroutine(SpawnEnemyRoutine());
-        //    StartCoroutine(SpawnPowerupRoutine());
-        //    StartCoroutine(SpawnRareEnemyRoutine());
-        //    StartCoroutine(SpawnRarePowerupRoutine());
-        //    StartCoroutine(SpawnFrequentPowerupRoutine());
-        //} else 
-        //{
-        //    _stopSpawning = false;
-        //    _waveNumber = waveNumber;
-        //    _uiManager.DisplayWaveText(_waveNumber);
-        //    StartCoroutine(SpawnBossRoutine());
-        //    StartCoroutine(SpawnRarePowerupRoutine());
-        //    StartCoroutine(SpawnFrequentPowerupRoutine());
-        //}
-        _stopSpawning = false;
-        _waveNumber = waveNumber;
-        _uiManager.DisplayWaveText(_waveNumber);
-        StartCoroutine(SpawnBossRoutine());
-        StartCoroutine(SpawnRarePowerupRoutine());
-        StartCoroutine(SpawnFrequentPowerupRoutine());
+        if (waveNumber <= 3)
+        {
+            _stopSpawning = false;
+            _killedEnemies = 0;
+            _waveNumber = waveNumber;
+            _uiManager.DisplayWaveText(_waveNumber);
+            _enemiesWaitingToSpawn = _waveNumber + 3;
+            _maxEnemies = _waveNumber + 3;
+            StartCoroutine(SpawnEnemyRoutine());
+            StartCoroutine(SpawnPowerupRoutine());
+            StartCoroutine(SpawnFrequentPowerupRoutine());
+        }
+        else if (waveNumber >= 3 && waveNumber <= 5)
+        {
+            _killedEnemies = 0;
+            _waveNumber = waveNumber;
+            _uiManager.DisplayWaveText(_waveNumber);
+            _stopSpawning = false;
+            _enemiesWaitingToSpawn = _waveNumber + 3;
+            _maxEnemies = _waveNumber + 3;
+            StartCoroutine(SpawnEnemyRoutine());
+            StartCoroutine(SpawnPowerupRoutine());
+            StartCoroutine(SpawnRareEnemyRoutine());
+            StartCoroutine(SpawnRarePowerupRoutine());
+            StartCoroutine(SpawnFrequentPowerupRoutine());
+        }
+        else
+        {
 
+            _stopSpawning = false;
+            _waveNumber = waveNumber;
+            _uiManager.DisplayWaveText(_waveNumber);
+            StartCoroutine(SpawnBossRoutine());
+            StartCoroutine(SpawnRarePowerupRoutine());
+            StartCoroutine(SpawnFrequentPowerupRoutine());
+            StartCoroutine(SpawnPowerupRoutine());
+        }
     }
         
     IEnumerator SpawnEnemyRoutine()

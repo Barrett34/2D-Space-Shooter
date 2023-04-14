@@ -26,9 +26,9 @@ public class Enemy : MonoBehaviour
     private float _rammingSpeed = 6f;
     private float _targetingDistance = 5f;
     [SerializeField]
-    private float _rayDistance = 2.0f;
+    private float _rayDistance = 4.0f;
     [SerializeField]
-    private float _rayCastRad = 2f;
+    private float _rayCastRad = 3f;
 
     
 
@@ -318,7 +318,7 @@ public class Enemy : MonoBehaviour
 
     private void DestroyPowerupShot()
     {
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, _rayCastRad, Vector2.down, _rayDistance, LayerMask.GetMask("Powerup"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 10f, LayerMask.GetMask("Powerup"));
         Debug.DrawRay(transform.position, Vector3.down * 10f, Color.red);
 
         if (hit.collider != null)
@@ -335,7 +335,7 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time > _canFire)
         {
-            _fireRate = Random.Range(1f, 1.5f);
+            _fireRate = Random.Range(.75f, 1f);
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
             Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();

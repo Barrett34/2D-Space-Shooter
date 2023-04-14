@@ -435,6 +435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
+  _tripleShotOffset: {x: 0, y: -2, z: 0}
+  _spreadShotOffset: {x: 0, y: -2.51, z: 0}
   _laserPrefab: {fileID: 2384782161777182095, guid: d481d1c25545e4e5f9a99a4360a0c4c4, type: 3}
   _laserSpreadShotPrefab: {fileID: 3226366552858199345, guid: c47612cac8ace4a54838dabe528f27c6, type: 3}
-  _bossHealthPoints: 100
+  _bossHealthPoints: 1

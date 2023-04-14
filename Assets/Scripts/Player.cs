@@ -59,12 +59,6 @@ public class Player : MonoBehaviour
     private bool isThrusterActive;
     [SerializeField]
     private Camera _camera;
-
-
-    
-
-
-
     private UIManager _uiManager;
 
     void Start()
