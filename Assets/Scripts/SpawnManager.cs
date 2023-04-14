@@ -74,8 +74,8 @@ public class SpawnManager : MonoBehaviour
             StartCoroutine(SpawnRarePowerupRoutine());
             StartCoroutine(SpawnFrequentPowerupRoutine());
             StartCoroutine(SpawnPowerupRoutine());
-        }
     }
+}
         
     IEnumerator SpawnEnemyRoutine()
     {
